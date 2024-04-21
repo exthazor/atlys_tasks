@@ -15,15 +15,15 @@ The project is structured to effectively organize and manage various components 
 
     Purpose: Contains essential utilities and middleware that are used across the application.
     Contents:
-    `fastifyPlugin.ts`: A plugin that uses AsyncLocalStorage to manage request tracing and context propagation across asynchronous operations in Fastify applications.
-    `withSchema.ts`: A utility for integrating TypeBox schema validation with Fastify routes, enhancing API reliability by enforcing data structure conformance.
+    `fastifyPlugin.ts`: A plugin that uses AsyncLocalStorage to manage request tracing.
+    `withSchema.ts`: A utility for integrating TypeBox schema validation with Fastify routes.
 
 3. /loaders:
 
     Purpose: Responsible for the initialization and configuration of core components and external services.
     Contents:
     `index.ts`: Manages the sequential initialization of external services like the Prisma client, with retry logic for robust startup.
-    `prisma.ts`: Initializes the PrismaClient with detailed query logging, enhancing debugging and performance monitoring by logging each database query's details.
+    `prisma.ts`: Initializes the PrismaClient with detailed query logging.
 
 4. /services:
 
@@ -40,7 +40,7 @@ The project is structured to effectively organize and manage various components 
     `error.ts`: Handles operational and programmer errors robustly by logging them and gracefully shutting down the application to avoid inconsistent states.
     `sleep.ts`: Provides a promise-based delay function that can be used to pause execution for a set amount of time, useful in simulations and timeout operations.
     `withCache.ts`: Implements caching logic using Redis, supporting serialization with MessagePack to optimize performance for frequently accessed data.
-    `withStaleWhileRevalidate.ts`: Applies the stale-while-revalidate caching strategy to functions, fetching data from cache and revalidating it in the background to keep it fresh, thus balancing performance with data accuracy.
+    `withStaleWhileRevalidate.ts`: Applies the stale-while-revalidate caching strategy to functions, fetching data from cache and revalidating it in the background to keep it fresh.
 
 6. /hooks:
 
@@ -68,3 +68,13 @@ The project is structured to effectively organize and manage various components 
     `generate.ts`: Automates the creation of large volumes of user, follow, and post data in the database using Prisma and Faker.
     `ipsum.ts`: Generates pseudo-random, contextually rich text based on a predefined vocabulary.
     `token.ts:` Generates an authentication token for a specified user using JWT.
+
+### Endpoints
+
+API Versioning is used.
+
+`routes.ts` in each component hosts the APIs for each key component
+- `/api/v1/login` and `/api/v1/signup`: User authentication and new user signup.
+- `/api/v1/posts/create`: Creates new posts for each user with visibility setting.
+- `/api/v1/posts/feed`: User's feed is retrieved.
+- `/api/v1/users/:id/follow`: User can follow another user.
